@@ -20,7 +20,7 @@ using namespace std;
 struct CostFunctor {
    template <typename T>
    bool operator()(const T* const x, T* residual) const {
-     residual[0] = T(10.0) - x[0];// cost function
+     residual[0] = pow(T(10.0) - x[0],2.0);// cost function
      return true;
    }
 };
@@ -50,8 +50,8 @@ int main()
         Solve(options, &problem, &summary);
 
         std::cout << summary.BriefReport() << "\n";
-        std::cout << "x : " << initial_x
-                  << " -> " << x << "\n";
+        std::cout << "x_init: " << initial_x << "\n";
+        std::cout << "x_final: " << x << "\n";
         return 0;
     }
 	catch (const std::exception& ex) {
